@@ -47,6 +47,8 @@ Use [the changelog guidelines](https://git.io/polaris-changelog-guidelines) to f
 - Fixed `ToastManager` from not working correctly in `React.StrictMode` ([#1741](https://github.com/Shopify/polaris-react/pull/1741))
 - Updated translation.yml with the new locales path ([#1649](https://github.com/Shopify/polaris-react/pull/1649))
 - Fixed accessibility issue with `Tabs` list item presentation role ([A#1958](https://github.com/Shopify/polaris-react/pull/1958))
+- Fixed accessibility issue with `Autocomplete` where keyboard navigation of options was laggy and skipped options([#1887](https://github.com/Shopify/polaris-react/pull/1887))
+- Fixed bug where `Autocomplete` was bubbling up the `Enter` key event unexpectedly ([#1887](https://github.com/Shopify/polaris-react/pull/1887))
 
 ### Documentation
 
