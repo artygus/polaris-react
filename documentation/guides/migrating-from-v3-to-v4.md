@@ -33,9 +33,9 @@ Polaris v4 contains mostly internal changes and has many migration paths. This g
 
 ## Testing <a name="polaris-testing"></a>
 
-We’ve migrated to [React’s new context API](https://reactjs.org/docs/context.html) while restructuring Polaris’ entire context structure. Using the Polaris test provider will allow you to keep up to date Polaris' internal contexts.
+We’ve migrated to [React’s new context API](https://reactjs.org/docs/context.html) while restructuring Polaris React’s entire context structure. Using the Polaris test provider will allow you to keep up to date on Polaris React's internal contexts.
 
-In v3, you could hook into Polaris’ context types.
+In v3, you could hook into Polaris's context types.
 
 **Note:** These examples use [Enzyme](https://airbnb.io/enzyme/). Other testing libraries can also be used, as shown in [these examples](https://github.com/Shopify/polaris-react/tree/master/examples).
 
