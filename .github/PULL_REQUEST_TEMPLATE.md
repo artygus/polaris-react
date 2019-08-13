@@ -60,6 +60,7 @@ export default function Playground() {
 * [ ] Tested for [accessibility](https://github.com/Shopify/polaris-react/blob/master/documentation/Accessibility%20testing.md)
 * [ ] Updated the component's `README.md` with documentation changes
 * [ ] [Tophatted documentation](https://github.com/Shopify/polaris-react/blob/master/documentation/Tophatting%20documentation.md) changes in the style guide
+* [ ] UI kit (Figma/Sketch) has been updated (required for any visual changes)
 
 <!--
   When tophatting, please check the UNRELEASED entry for consistency, as per the [guidelines](https://github.com/Shopify/polaris-react/blob/master/documentation/Versioning%20and%20changelog.md).
