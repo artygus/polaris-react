@@ -1,38 +1,37 @@
 # Migrating from v3 to v4
 
-Polaris v4 contains mostly internal changes and has simple migration path. This guide goes through the necessary steps to deal with breaking changes in your application.
+Polaris v4 contains mostly internal changes and has many migration paths. This guide goes through the necessary steps to deal with breaking changes in your application.
 
 **Note:** This migration guide is for v3 but may apply for v2 as well.
 
-- [Testing](#testing)
-- [API Changes](#api-changes)
-  - [AppProvider](#appprovider)
-    - [i18n](#i18n)
-  - [Navigation](#navigation)
-    - [iconBody](#icon-body)
-  - [ChoiceList](#choicelist)
-    - [title](#title)
-  - [Card](#card)
-    - [secondaryFooterAction](#secondaryfooteraction)
-  - [Select](#select)
-    - [groups](#groups)
-  - [Icon](#icon)
-    - [source](source)
-    - [untrusted](#untrusted)
-- [Removed Exports/Components](#removed-exportscomponents)
-  - [WithContext](#withcontext)
-  - [WithRef](#withref)
-  - [Autocomplete.ComboBox.TextField](#autocompletecomboboxtextfield)
-  - [Autocomplete.ComboBox.OptionList](#autocompletecomboboxoptionlist)
-  - [Navigation.UserMenu](#navigationusermenu)
-  - [Modal.Dialog](#modaldialog)
-  - [Tabs.Panel](#tabspanel)
-- [Dependencies](#dependencies)
-- [Typescript](#typescript)
-  - [Config](#config)
-  - [Types](#types)
+- [Testing](#polaris-testing)
+- [Component API Changes](#polaris-component-api-changes)
+  - [AppProvider](#polaris-appprovider)
+    - [i18n](#polaris-i18n)
+  - [Navigation](#polaris-navigation)
+    - [iconBody](#polaris-icon-body)
+  - [ChoiceList](#polaris-choicelist)
+    - [title](#polaris-title)
+  - [Card](#polaris-card)
+    - [secondaryFooterAction](#polaris-secondaryfooteraction)
+  - [Select](#polaris-select)
+    - [groups](#polaris-groups)
+  - [Icon](#polaris-icon)
+    - [source](#polaris-source)
+    - [untrusted](#polaris-untrusted)
+- [Removed Exports/Components](#polaris-removed-exportscomponents)
+  - [WithContext](#polaris-withcontext)
+  - [WithRef](#polaris-withref)
+  - [Autocomplete.ComboBox.TextField](#polaris-autocompletecomboboxtextfield)
+  - [Autocomplete.ComboBox.OptionList](#polaris-autocompletecomboboxoptionlist)
+  - [Navigation.UserMenu](#polaris-navigationusermenu)
+  - [Modal.Dialog/Tabs.Panel](#polaris-dialog-panel)
+- [Dependencies](#polaris-dependencies)
+- [Typescript](#polaris-typescript)
+  - [Config](#polaris-config)
+  - [Types](#polaris-types)
 
-## Testing
+## Testing <a name="polaris-testing"></a>
 
 We’ve migrated to [React’s new context API](https://reactjs.org/docs/context.html) while restructuring Polaris’ entire context structure. Using the Polaris test provider will allow you to keep up to date Polaris' internal contexts.
 
@@ -82,11 +81,11 @@ export function mountWithPolaris(node) {
 }
 ```
 
-## API Changes
+## Component API changes <a name="polaris-component-api-changes"></a>
 
-### AppProvider
+### AppProvider <a name="polaris-appprovider"></a>
 
-#### i18n
+#### i18n <a name="polaris-i18n"></a>
 
 i18n is now a required prop and Polaris includes [many translations](https://github.com/Shopify/polaris-react/blob/master/locales) to support internationalization.
 
@@ -97,17 +96,17 @@ import fr from '@shopify/polaris/locales/fr.json';
 ...
 ```
 
-### Navigation
+### Navigation <a name="polaris-navigation"></a>
 
-#### iconBody
+#### iconBody <a name="polaris-icon-body"></a>
 
 <!-- ping ben or andre about this <svg><path d='M17 9h-6V3a1 1 0 1 0-2 0v6H3a1 1 0 1 0 0 2h6v6a1 1 0 1 0 2 0v-6h6a1 1 0 1 0 0-2'  fill-rule='evenodd'/></svg> doesnt seem to work -->
 
 Pass a string to the icon prop instead.
 
-### ChoiceList
+### ChoiceList <a name="polaris-choicelist"></a>
 
-#### title
+#### title <a name="polaris-title"></a>
 
 Title is now a required prop for accessibility concerns, however, it can be hidden with the titleHidden prop to keep your UI the same.
 
@@ -125,9 +124,9 @@ const choiceListMarkup = (
 );
 ```
 
-### Card
+### Card <a name="polaris-card"></a>
 
-#### secondaryFooterAction
+#### secondaryFooterAction <a name="polaris-secondaryfooteraction"></a>
 
 `secondaryFooterAction` has been removed in favor of `secondaryFooterActions` which behaves the same expect it'll accept an array of actions.
 
@@ -139,9 +138,37 @@ const choiceListMarkup = (
 <Card secondaryFooterActions={[{content: 'Dismiss'}]}>Polaris</Card>
 ```
 
-### Icon
+### Select <a name="polaris-select"></a>
 
-#### source
+#### groups <a name="polaris-groups"></a>
+
+`groups` has been removed in favor of `options` which accepts `groups` or `options`.
+
+```jsx
+const options = [
+  {label: 'Today', value: 'today'},
+  {label: 'Yesterday', value: 'yesterday'},
+  {label: 'Last 7 days', value: 'lastWeek'},
+];
+
+const groups = [{title: 'Group', options}];
+
+// old
+<Select
+  groups={groups}
+  ...
+/>
+
+// new
+<Select
+  options={groups}
+  ...
+/>
+```
+
+### Icon <a name="polaris-icon"></a>
+
+#### source <a name="polaris-source"></a>
 
 Support for passing a string into `source` to load bundled icons has been removed. Now you can load icons from `@shopify/polaris-icons`.
 
@@ -174,13 +201,13 @@ function Hamburger () {
 
 ```
 
-#### untrusted
+#### untrusted <a name="polaris-untrusted"></a>
 
 All icons rendered with a string as the source will be considered untrusted.
 
-## Removed Exports/Components
+## Removed Exports/Components <a name="polaris-removed-exportscomponents"></a>
 
-### WithContext
+### WithContext <a name="polaris-withcontext"></a>
 
 `WithContext` as an internal abstraction used for class components. Use hooks or contextType instead.
 
@@ -212,7 +239,7 @@ class Test extends Component {
 }
 ```
 
-### WithRef
+### WithRef <a name="polaris-withref"></a>
 
 `WithRef` was an internal component used to place refs on components wrapped in higher-order components. Use functional components instead.
 
@@ -279,7 +306,7 @@ function App() {
 }
 ```
 
-### Autocomplete.ComboBox.TextField
+### Autocomplete.ComboBox.TextField <a name="polaris-autocompletecomboboxtextfield"></a>
 
 Use `Autocomplete.TextField` instead.
 
@@ -293,7 +320,7 @@ const textFieldMarkup = (
 ...
 ```
 
-### Autocomplete.ComboBox.OptionList
+### Autocomplete.ComboBox.OptionList <a name="polaris-autocompletecomboboxoptionlist"></a>
 
 Use `OptionList` instead.
 
@@ -308,7 +335,7 @@ const optionListMarkup = (
 ...
 ```
 
-### Navigation.UserMenu
+### Navigation.UserMenu <a name="polaris-navigationusermenu"></a>
 
 Use `TopBar.UserMenu` instead
 
@@ -324,11 +351,11 @@ const userMenuMarkup = (
 );
 ```
 
-### Modal.Dialog/Tabs.Panel
+### Modal.Dialog/Tabs.Panel <a name="polaris-dialog-panel"></a>
 
 `Dialog` and `Panel` are subcomponents that are used by Polaris to build the respective component and are not intended to be used outside of their component.
 
-## Dependencies
+## Dependencies <a name="polaris-dependencies"></a>
 
 React/ReactDOM are peer dependencies of Polaris and have been bumped to 16.8.6 to enable the use of hooks. Use `yarn` or `npm` to install a recent version of React.
 
@@ -340,9 +367,9 @@ yarn add react react-dom
 npm i react react-dom
 ```
 
-## TypeScript
+## TypeScript <a name="polaris-typescript"></a>
 
-### Config
+### Config <a name="polaris-config"></a>
 
 The method for importing React changed to use default imports.
 
@@ -373,7 +400,7 @@ Because of this consuming TypeScript applications must enable [esModuleInterop](
 tsc --esModuleInterop ...
 ```
 
-### Types
+### Types <a name="polaris-types"></a>
 
 `LinkLikeComponent` type was removed. Use `AppProviderProps['linkComponent']` instead.
 
