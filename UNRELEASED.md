@@ -47,6 +47,7 @@ Use [the changelog guidelines](https://git.io/polaris-changelog-guidelines) to f
 - Fixed `ToastManager` from not working correctly in `React.StrictMode` ([#1741](https://github.com/Shopify/polaris-react/pull/1741))
 - Updated translation.yml with the new locales path ([#1649](https://github.com/Shopify/polaris-react/pull/1649))
 - Fixed accessibility issue with `Tabs` list item presentation role ([#1958](https://github.com/Shopify/polaris-react/pull/1958))
+- Fixed overflow issue with `ContextualSaveBar` actions on small screens ([#1967](https://github.com/Shopify/polaris-react/pull/1967))
 
 ### Documentation
 
