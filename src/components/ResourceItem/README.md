@@ -26,23 +26,13 @@ keywords:
 
 # Resource item
 
-The content of a resource list consists of resource items. Each item summarizes an individual resource and should link to its details page.
-
-Because the content of items depends on the type of resource and merchant tasks, resource items are flexible.
-
-See the case study section for [more about customizing and using resource items](/components/lists-and-tables/resource-list#study-custom-item).
+Resource items represent specific objects within a collection, like products or orders. They provide contextual information on the resource type and link to the object’s detail page.
 
 <div class="TypeContainerImage TypeContainerImage--PageBackground">
 
 ![Resource item anatomy, showing handle, media and details](/public_images/resource-list/item-anatomy-wide@2x.png)
 
 </div>
-
----
-
-## Required components
-
-The resource item component must be wrapped in a [resource list](/components/lists-and-tables/resource-list) component.
 
 ---
 
@@ -127,7 +117,7 @@ The media element can hold an [avatar](/components/images-and-icons/avatar), [th
 
 ### Item with shortcut actions
 
-Shortcut actions present popular actions from the resource’s details page for easy access.
+Shortcut actions present popular actions from the resource’s details page for easy access. A shortcut action should available on every item in the list.
 
 ```jsx
 <Card>
@@ -169,23 +159,40 @@ Shortcut actions present popular actions from the resource’s details page for 
   />
 </Card>
 ```
+---
+## Required components
+
+The resource item component must be wrapped in the [resource list](/components/lists-and-tables/resource-list) component.
 
 ---
 
+## Accessibility
+
+Resource items function as links to the full-page representations of the items. Each item should have a unique `name` prop. For each `ResourceItem`, the `accessibilityLabel` prop should be used to give the link a unique `aria-label` value. The `aria-label` value should convey the link’s purpose, using the `name` value. Merchants who use screen readers or other text to speech tools should be able to easily distinguish each link from the others.
+
+When adding custom content to resource items, ensure that all text is available to all users and that all custom controls have a unique accessible name to help users understand what will happen when the control is activated.
+
+### Keyboard
+
+Links can be activated with the <kbd>enter</kbd>/<kbd>return</kbd> key by default.
+
+If you add custom controls to resource items, then ensure that the controls:
+- Can be used with the keyboard
+- Receive keyboard focus in a logical order
+- Display a visible focus indicator
+
+---
 ## Best practices
 
 Resource items should:
 
+- Be tailored to the specific type of context being displayed.
 - Perform an action when clicked. The action should navigate to the resource’s details page or otherwise provide more detail about the item.
-- Be tailored to the specific type of resource being displayed.
-- Lay out the content effectively across all screen sizes.
+
 
 Resource items can optionally:
 
-- Use [conditional content](/components/lists-and-tables/resource-list#study-custom-item-conditional-content) to help merchants deal with items in unusual states
-- Provide [shortcut actions](/components/lists-and-tables/resource-list#study-custom-item-shortcut-actions) for quick access to frequent actions from the resource’s details page
-
-Read the [case study](/components/lists-and-tables/resource-list#study-custom-item) to see how the best practices are applied.
+- Provide [shortcut actions](/components/lists-and-tables/resource-list#study-custom-item-shortcut-actions) for quick access to frequent actions from the resource’s details page.
 
 ---
 
@@ -193,13 +200,13 @@ Read the [case study](/components/lists-and-tables/resource-list#study-custom-it
 
 Resource items should:
 
-- Present the content merchants need to find the items they’re looking for.
-- Support merchants’ tasks for the particular type of resource.
-- Present content elements concisely. For example, add a label or clarifying phrase only when necessary.
-- Avoid truncating content where possible.
+- Present the content merchants need to find the items that they’re looking for.
+- Support merchant tasks for the particular type of resource.
 - Avoid colons.
-- [Conditional actions](/components/lists-and-tables/resource-list#study-custom-item-conditional-content) should follow the verb + noun content formula for buttons.
-- If a content value is empty, don’t use an em dash (“—”) like in a table. Instead, use a phrase like “No orders.”
 - [Shortcut actions](/components/lists-and-tables/resource-list#study-custom-item-shortcut-actions) don’t need to follow the full verb + noun formula for buttons.
 
-See the [case study](/components/lists-and-tables/resource-list#study-custom-item) for content guidelines in action.
+---
+
+## Related components
+
+To display a simple list of related content, [use the list component](/components/lists-and-tables/list).
